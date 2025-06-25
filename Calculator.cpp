@@ -22,7 +22,7 @@ int main()
                 break;
             case '/':
                 // std::cout << Index;
-                std::cout << (Equation[Index - 1] - '0') / (Equation[Index + 1] - '0') << std::endl;
+                std::cout << static_cast<double>((Equation[Index - 1] - '0')) / (Equation[Index + 1] - '0') << std::endl;
                 break;
             case '+':
                 // std::cout << Index;
