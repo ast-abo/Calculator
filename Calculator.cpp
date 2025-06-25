@@ -2,22 +2,50 @@
 #include <vector>
 #include <string>
 
-int main() {
-    std::string Equation;
-
-    std::vector<char> Numbers(5);
-
-    std::cout << "Enter Equation";
-    std::cin >> Equation;
-    // std::cout << "Enter 2 numbers ";
-    // std::cin >> num1 >> num2;
-    // std::cout << num1, num2;
-
-    for (char Character : Equation)
+int main()
+{
+    while (true)
     {
-        std::count << Equation;
+        std::string Equation;
+        std::vector<char> Numbers(5);
+        std::cout << "Enter Equation: ";
+        std::cin >> Equation;
+        int Index = 0;
+
+        for (char Character : Equation)
+        {
+            switch (Character)
+            {
+            case '*':
+                // std::cout << Index;
+                std::cout << (Equation[Index - 1] - '0') * (Equation[Index + 1] - '0') << std::endl;
+                break;
+            case '/':
+                // std::cout << Index;
+                std::cout << (Equation[Index - 1] - '0') / (Equation[Index + 1] - '0') << std::endl;
+                break;
+            case '+':
+                // std::cout << Index;
+                std::cout << (Equation[Index - 1] - '0') + (Equation[Index + 1] - '0') << std::endl;
+                break;
+            case '-':
+                // std::cout << Index;
+                std::cout << (Equation[Index - 1] - '0') - (Equation[Index + 1] - '0') << std::endl;
+                break;
+            default:
+                // std::cout << "Invalid Symbol!" << std::endl;
+                break;
+            }
+
+            Index++;
+        }
+
+        if (Equation != "exit")
+        {
+            continue;
+        }
+        break;
     }
-    
 
     return 0;
 }
