@@ -4,27 +4,34 @@
 #include <map>
 #include <any>
 
-std::string LeftNumber = "";
-std::string RightNumber = "";
+std::vector<std::any> ParsedEqaution;
 
-void ConnectNumsLeft(int StartIndex, std::string Expression)
+float ConnectNumsLeft(int StartIndex, std::string Expression, std::string Number)
 {
-    if (Expression[StartIndex - 1])
-    {
+    std::string NewNumber = Number;
+
+    if (Expression[StartIndex - 1]) {
         char NextChar = Expression[StartIndex - 1];
-        LeftNumber.insert(0, 1, NextChar);
-        ConnectNumsLeft(StartIndex - 1, Expression);
-    };
+        NewNumber.insert(0, 1, NextChar);
+        ConnectNumsLeft(StartIndex - 1, Expression, NewNumber);
+    }
+    else {
+        return std::stoi(NewNumber);
+    }
 }
 
-void ConnectNumsRight(int StartIndex, std::string Expression)
+float ConnectNumsRight(int StartIndex, std::string Expression, std::string Number)
 {
-    if (Expression[StartIndex + 1])
-    {
+    std::string NewNumber = Number;
+
+    if (Expression[StartIndex + 1]) {
         char NextChar = Expression[StartIndex + 1];
-        RightNumber.insert(RightNumber.length(), 1, NextChar);
-        ConnectNumsRight(StartIndex + 1, Expression);
-    };
+        NewNumber.insert(NewNumber.length(), 1, NextChar);
+        ConnectNumsRight(StartIndex + 1, Expression, NewNumber);
+    }
+    else {
+        return std::stoi(NewNumber);
+    }
 }
 
 void Add(int a, int b)
@@ -43,6 +50,10 @@ void Divide(int a, int b)
 {
 }
 
+void Evaluate(std::any ParsedEquation) {
+
+}
+
 int main()
 {
     while (true)
@@ -52,22 +63,23 @@ int main()
         std::cin >> Expression;
         int Index = 0;
 
-        std::vector<std::any> ParsedEqaution;
-
         for (char Character : Expression)
         {
-
             switch (Character)
             {
             case '+':
+                float LeftNumber = ConnectNumsLeft(Index, Expression, "");
+                float RightNumber = ConnectNumsRight(Index, Expression, "");
+                
 
-                std::cout << std::stoi(LeftNumber) + std::stoi(RightNumber) << std::endl;
-
+                ParsedEqaution[0] = std::map<std::string, int>();
+                
                 break;
 
             default:
                 break;
             }
+            ////
 
             if (Expression != "exit")
             {
