@@ -61,6 +61,8 @@ int main()
             {
             case '+':
 
+                std::cout << std::stoi(LeftNumber) + std::stoi(RightNumber) << std::endl;
+
                 break;
 
             default:
