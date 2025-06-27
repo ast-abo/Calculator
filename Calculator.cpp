@@ -42,11 +42,17 @@ float ConnectNumsRight(int StartIndex, std::string Expression, std::string Numbe
 
 void Evaluate()
 {
-    for (auto& Operation : ParsedExpression)
+    for (auto &Operation : ParsedExpression)
     {
-        float test = Operation.Evaluate();
+        if (Operation.Index > 0)
+        {
+            Operation.First = ExpressionNumberArray[ExpressionNumberArray.size() - 1];
+        }
 
-        std::cout << test;
+        float Result = Operation.Evaluate();
+        ExpressionNumberArray.push_back(Result);
+
+        std::cout << Result << std::endl;
     }
 }
 
@@ -55,8 +61,13 @@ void OperatorCheck(char Operator, int Index, std::string Expression)
     switch (Operator)
     {
     case '+':
+        if (Index == 1)
+        {
+            ExpressionNumberArray.push_back(ConnectNumsLeft(Index, Expression, ""));
+        }
+        ExpressionNumberArray.push_back(ConnectNumsRight(Index, Expression, ""));
 
-        ParsedExpression.push_back(Operation(ConnectNumsLeft(Index, Expression, ""), ConnectNumsRight(Index, Expression, ""), ParsedExpression.size() - 1, '+'));
+        ParsedExpression.push_back(Operation(ExpressionNumberArray[0], ExpressionNumberArray[1], Index, '+'));
         break;
 
     default:
