@@ -12,36 +12,32 @@ float ConnectNumsLeft(int StartIndex, std::string Expression, std::string Number
 {
     std::string NewNumber = Number;
 
-    if (Expression[StartIndex - 1])
+    if (StartIndex > 0)
     {
         char NextChar = Expression[StartIndex - 1];
         NewNumber.insert(0, 1, NextChar);
-        ConnectNumsLeft(StartIndex - 1, Expression, NewNumber);
+        return ConnectNumsLeft(StartIndex - 1, Expression, NewNumber);
     }
     else
     {
-        return std::stoi(NewNumber);
+        return std::stof(NewNumber);
     }
-
-    return 0;
 }
 
 float ConnectNumsRight(int StartIndex, std::string Expression, std::string Number)
 {
     std::string NewNumber = Number;
 
-    if (Expression[StartIndex + 1])
+    if (StartIndex < Expression.length() - 1)
     {
         char NextChar = Expression[StartIndex + 1];
         NewNumber.insert(NewNumber.length(), 1, NextChar);
-        ConnectNumsRight(StartIndex + 1, Expression, NewNumber);
+        return ConnectNumsRight(StartIndex + 1, Expression, NewNumber);
     }
     else
     {
         return std::stoi(NewNumber);
     }
-
-    return 0;
 }
 
 void Evaluate()

@@ -9,10 +9,11 @@ Operation::Operation(float a, float b, int Index, char Op)
 
 float Operation::Evaluate()
 {
-    std::cout << "Hello from MyClass!" << std::endl;
     switch (Operator)
     {
     case '+':
+
+        std::cout << "Adding: " << First << " + " << Second << std::endl;
         return First + Second;
         break;
     case '-':
