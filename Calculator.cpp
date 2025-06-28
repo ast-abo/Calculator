@@ -24,6 +24,8 @@ float ConnectNumsLeft(int StartIndex, std::string Expression, std::string Number
     {
         return std::stof(NewNumber);
     }
+
+    return 0;
 }
 
 float ConnectNumsRight(int StartIndex, std::string Expression, std::string Number)
