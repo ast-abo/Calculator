@@ -18,6 +18,7 @@ float Operation::Evaluate()
         break;
     case '-':
 
+        std::cout << "Subtracting: " << First << " - " << Second << std::endl;
         return First - Second;
         break;
 
