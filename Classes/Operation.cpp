@@ -1,8 +1,8 @@
 #include "Operation.h"
 #include <iostream>
 
-Operation::Operation(float a, float b, int Index, char Op)
-    : First(a), Second(b), Index(Index), Operator(Op)
+Operation::Operation(float Operand1, float Operand2, int ExpressionIndex, int ParseIndex,  char OperaterType)
+    : Operand1(Operand1), Operand2(Operand2), ExpressionIndex(ExpressionIndex), Operator(OperaterType), ParseIndex(ParseIndex)
 {
 
 }
@@ -13,13 +13,21 @@ float Operation::Evaluate()
     {
     case '+':
 
-        std::cout << "Adding: " << First << " + " << Second << std::endl;
-        return First + Second;
+        std::cout << "Adding: " << Operand1 << " + " << Operand2 << std::endl;
+        Result = Operand1 + Operand2;
+        return Operand1 + Operand2;
         break;
     case '-':
 
-        std::cout << "Subtracting: " << First << " - " << Second << std::endl;
-        return First - Second;
+        std::cout << "Subtracting: " << Operand1 << " - " << Operand2 << std::endl;
+        Result = Operand1 - Operand2;
+        return Operand1 - Operand2;
+        break;
+     case '*':
+
+        std::cout << "Multiplying: " << Operand1 << " * " << Operand2 << std::endl;
+        Result = Operand1 * Operand2;
+        return Operand1 * Operand2;
         break;
 
     default:
