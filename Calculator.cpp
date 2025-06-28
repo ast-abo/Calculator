@@ -24,8 +24,6 @@ float ConnectNumsLeft(int StartIndex, std::string Expression, std::string Number
     {
         return std::stof(NewNumber);
     }
-
-    return 0;
 }
 
 float ConnectNumsRight(int StartIndex, std::string Expression, std::string Number)
@@ -103,13 +101,13 @@ void main()
 
         Evaluate();
 
-        ParsedExpression.clear();
-        Expression.clear();
-        ExpressionNumberArray.clear();
-        ResultsArray.clear();
-        IsFirstOperation = true;
         if (Expression != "exit")
         {
+            ParsedExpression.clear();
+            Expression.clear();
+            ExpressionNumberArray.clear();
+            ResultsArray.clear();
+            IsFirstOperation = true;
             continue;
         }
         break;
