@@ -72,6 +72,16 @@ void OperatorCheck(char Operator, int Index, std::string Expression)
 
         ParsedExpression.push_back(Operation(ExpressionNumberArray[0], ExpressionNumberArray[1], Index, '+'));
         break;
+    case '-':
+        if (IsFirstOperation)
+        {
+            ExpressionNumberArray.push_back(ConnectNumsLeft(Index, Expression, ""));
+            IsFirstOperation = false;
+        }
+        ExpressionNumberArray.push_back(ConnectNumsRight(Index, Expression, ""));
+
+        ParsedExpression.push_back(Operation(ExpressionNumberArray[0], ExpressionNumberArray[1], Index, '-'));
+        break;
 
     default:
         break;
