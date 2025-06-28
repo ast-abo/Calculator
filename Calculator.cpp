@@ -7,6 +7,8 @@
 
 std::vector<Operation> ParsedExpression;
 std::vector<float> ExpressionNumberArray;
+std::vector<float> ResultsArray;
+bool IsFirstOperation = true;
 
 float ConnectNumsLeft(int StartIndex, std::string Expression, std::string Number)
 {
@@ -44,13 +46,13 @@ void Evaluate()
 {
     for (auto &Operation : ParsedExpression)
     {
-        if (Operation.Index > 0)
+        if (ResultsArray.size() > 0)
         {
-            Operation.First = ExpressionNumberArray[ExpressionNumberArray.size() - 1];
+            Operation.First = ResultsArray[ResultsArray.size() - 1];
         }
 
         float Result = Operation.Evaluate();
-        ExpressionNumberArray.push_back(Result);
+        ResultsArray.push_back(Result);
 
         std::cout << Result << std::endl;
     }
@@ -61,9 +63,10 @@ void OperatorCheck(char Operator, int Index, std::string Expression)
     switch (Operator)
     {
     case '+':
-        if (Index == 1)
+        if (IsFirstOperation)
         {
             ExpressionNumberArray.push_back(ConnectNumsLeft(Index, Expression, ""));
+            IsFirstOperation = false;
         }
         ExpressionNumberArray.push_back(ConnectNumsRight(Index, Expression, ""));
 
@@ -101,7 +104,8 @@ void main()
         ParsedExpression.clear();
         Expression.clear();
         ExpressionNumberArray.clear();
-
+        ResultsArray.clear();
+        IsFirstOperation = true;
         if (Expression != "exit")
         {
             continue;
