@@ -14,32 +14,38 @@ float ConnectNumsLeft(int StartIndex, std::string Expression, std::string Number
 {
     std::string NewNumber = Number;
 
-    if (StartIndex > 0)
+    if (StartIndex - 1 >= Expression.length())
     {
-        char NextChar = Expression[StartIndex - 1];
-        NewNumber.insert(0, 1, NextChar);
-        return ConnectNumsLeft(StartIndex - 1, Expression, NewNumber);
+        return std::stoi(NewNumber);
     }
-    else
+
+    if (!std::isdigit(Expression[StartIndex - 1]))
     {
         return std::stof(NewNumber);
     }
+
+    char NextChar = Expression[StartIndex - 1];
+    NewNumber.insert(0, 1, NextChar);
+    return ConnectNumsLeft(StartIndex - 1, Expression, NewNumber);
 }
 
 float ConnectNumsRight(int StartIndex, std::string Expression, std::string Number)
 {
     std::string NewNumber = Number;
 
-    if (StartIndex < Expression.length() - 1)
-    {
-        char NextChar = Expression[StartIndex + 1];
-        NewNumber.insert(NewNumber.length(), 1, NextChar);
-        return ConnectNumsRight(StartIndex + 1, Expression, NewNumber);
-    }
-    else
+    if (StartIndex + 1 >= Expression.length())
     {
         return std::stoi(NewNumber);
     }
+
+    if (!std::isdigit(Expression[StartIndex + 1]))
+    {
+        return std::stof(NewNumber);
+    }
+
+    char NextChar = Expression[StartIndex + 1];
+    NewNumber.insert(NewNumber.length(), 1, NextChar);
+    return ConnectNumsRight(StartIndex + 1, Expression, NewNumber);
 }
 
 void Evaluate()
@@ -72,6 +78,16 @@ void OperatorCheck(char Operator, int Index, std::string Expression)
 
         ParsedExpression.push_back(Operation(ExpressionNumberArray[0], ExpressionNumberArray[1], Index, '+'));
         break;
+    case '-':
+        if (IsFirstOperation)
+        {
+            ExpressionNumberArray.push_back(ConnectNumsLeft(Index, Expression, ""));
+            IsFirstOperation = false;
+        }
+        ExpressionNumberArray.push_back(ConnectNumsRight(Index, Expression, ""));
+        // fix first parameter of subtraction
+        ParsedExpression.push_back(Operation(ExpressionNumberArray[0], ExpressionNumberArray[ExpressionNumberArray.size() - 1], Index, '-'));
+        break;
 
     default:
         break;
@@ -89,7 +105,7 @@ void ParseExpression(std::string Expression)
     }
 }
 
-void main()
+int main()
 {
     while (true)
     {
