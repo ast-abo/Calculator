@@ -4,6 +4,6 @@ A simple calculator to help me learn c++
 
 # Build Instructions
 Open terminal and paste these commands
-git clone https://github.com/ast-abo/Calculator.git
+git clone https://github.com/ast-abo/Calculator.git /n
 cd Calculator
 Calculator.exe
