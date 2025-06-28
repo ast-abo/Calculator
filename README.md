@@ -6,5 +6,7 @@ A simple calculator to help me learn c++
 Open terminal and paste these commands
 
 git clone https://github.com/ast-abo/Calculator.git
+
 cd Calculator
+
 Calculator.exe
