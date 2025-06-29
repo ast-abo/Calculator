@@ -2,11 +2,13 @@
 
 class Operation {
 public:
-    Operation(float a, float b, int Index, char Op);
+    Operation(float a, float b, int ExpressionIndex, int ParseIndex, char OperatorType);
     float Evaluate();
-    float First;
-    float Second;
-    int Index;
+    float Operand1;
+    float Operand2;
+    float Result;
+    int ExpressionIndex;
+    int ParseIndex;
     char Operator;
 
 private:

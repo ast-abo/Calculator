@@ -7,8 +7,8 @@
 
 std::vector<Operation> ParsedExpression;
 std::vector<float> ExpressionNumberArray;
-std::vector<float> ResultsArray;
 bool IsFirstOperation = true;
+int OperationIndex = 0;
 
 float ConnectNumsLeft(int StartIndex, std::string Expression, std::string Number)
 {
@@ -52,56 +52,76 @@ void Evaluate()
 {
     for (auto &Operation : ParsedExpression)
     {
-        if (ResultsArray.size() > 0)
+        if (Operation.ParseIndex > 0)
         {
-            Operation.First = ResultsArray[ResultsArray.size() - 1];
+            Operation.Operand1 = ParsedExpression[Operation.ParseIndex - 1].Result;
         }
 
-        float Result = Operation.Evaluate();
-        ResultsArray.push_back(Result);
-
-        std::cout << Result << std::endl;
+        Operation.Evaluate();
+        std::cout << Operation.Result << std::endl;
     }
 }
 
-void OperatorCheck(char Operator, int Index, std::string Expression)
+
+void OperatorCheck(char Character, int CharIndex, std::string Expression)
 {
-    switch (Operator)
+    switch (Character)
     {
     case '+':
         if (IsFirstOperation)
         {
-            ExpressionNumberArray.push_back(ConnectNumsLeft(Index, Expression, ""));
+            ExpressionNumberArray.push_back(ConnectNumsLeft(CharIndex, Expression, ""));
             IsFirstOperation = false;
         }
-        ExpressionNumberArray.push_back(ConnectNumsRight(Index, Expression, ""));
+        ExpressionNumberArray.push_back(ConnectNumsRight(CharIndex, Expression, ""));
 
-        ParsedExpression.push_back(Operation(ExpressionNumberArray[0], ExpressionNumberArray[1], Index, '+'));
+        ParsedExpression.push_back(Operation(ExpressionNumberArray[0], ExpressionNumberArray[ExpressionNumberArray.size() - 1], CharIndex, OperationIndex, Character));
         break;
     case '-':
         if (IsFirstOperation)
         {
-            ExpressionNumberArray.push_back(ConnectNumsLeft(Index, Expression, ""));
+            ExpressionNumberArray.push_back(ConnectNumsLeft(CharIndex, Expression, ""));
             IsFirstOperation = false;
         }
-        ExpressionNumberArray.push_back(ConnectNumsRight(Index, Expression, ""));
+        ExpressionNumberArray.push_back(ConnectNumsRight(CharIndex, Expression, ""));
         // fix first parameter of subtraction
-        ParsedExpression.push_back(Operation(ExpressionNumberArray[0], ExpressionNumberArray[ExpressionNumberArray.size() - 1], Index, '-'));
+        ParsedExpression.push_back(Operation(ExpressionNumberArray[0], ExpressionNumberArray[ExpressionNumberArray.size() - 1], CharIndex, OperationIndex, Character));
+        break;
+    case '*':
+        if (IsFirstOperation)
+        {
+            ExpressionNumberArray.push_back(ConnectNumsLeft(CharIndex, Expression, ""));
+            IsFirstOperation = false;
+        }
+
+        for (auto &Operation : ParsedExpression)
+        {
+            if (Operation.Operator == '+' || Operation.Operator == '-') {
+                
+            }
+        }
+        ExpressionNumberArray.push_back(ConnectNumsRight(CharIndex, Expression, ""));
+
+        ParsedExpression.push_back(Operation(ExpressionNumberArray[0], ExpressionNumberArray[ExpressionNumberArray.size() - 1], CharIndex, OperationIndex, Character));
         break;
 
     default:
         break;
     }
+    if (Character == '*' || Character == '/' || Character == '+' || Character == '-')
+    {
+        OperationIndex++;
+    }
 }
 
 void ParseExpression(std::string Expression)
 {
-    int Index = 0;
+    int CharIndex = 0;
 
     for (char Character : Expression)
     {
-        OperatorCheck(Character, Index, Expression);
-        Index++;
+        OperatorCheck(Character, CharIndex, Expression);
+        CharIndex++;
     }
 }
 
@@ -122,8 +142,8 @@ int main()
             ParsedExpression.clear();
             Expression.clear();
             ExpressionNumberArray.clear();
-            ResultsArray.clear();
             IsFirstOperation = true;
+            OperationIndex = 0;
             continue;
         }
         break;
