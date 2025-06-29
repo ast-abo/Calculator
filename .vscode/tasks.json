@@ -10,8 +10,7 @@
                 "/nologo",
                 "/Fe${workspaceFolder}\\Calculator.exe",
                 "Calculator.cpp",
-                "Classes\\Operation.cpp",
-                "-IClassHeaders"
+                "Operation.cpp",
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

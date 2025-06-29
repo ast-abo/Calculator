@@ -1,8 +1,114 @@
-# Ignore build artifacts
-*.exe
+# Object / intermediary files
 *.o
 *.obj
-*.out
+*.lo
+*.slo
+*.gch
+*.pch
+*.dep
+*.d
+
+# Static / shared libraries
+*.a
+*.lib
+*.so
+*.so.*
 *.dll
+*.dylib
+
+# Executables & run-time images
+*.out
+*.exe
+*.elf
+*.app
+*.bin
+
+# Debug / profile / coverage
 *.pdb
+*.idb
 *.ilk
+*.exp
+*.dSYM/
+*.gcda
+*.gcno
+*.gcov
+*.prof
+core
+*.stackdump
+
+# Generic “build” and variant directories
+/build/
+/build-*/
+/dist/
+/Debug/
+/debug/
+/Release/
+/release/
+/x64/
+/x86/
+/Generated\ Files/
+
+# vcpkg
+/vcpkg_installed/
+CMakePresets.json
+
+# Visual Studio
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+*.suo
+*.user
+*.unsaved
+*.ipch
+/.vs/
+
+# VS Code
+# Ignore everything in .vscode except essential configuration files
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
+
+# CLion / IntelliJ
+.idea/
+
+# Eclipse
+.cproject
+.project
+.settings/
+
+# QtCreator
+*.autosave
+*.user*
+
+# Xcode
+*.xcworkspace
+*.xcuserstate
+*.xcuserdata/
+*.xcodeproj/
+*.mode1v3
+*.mode2v3
+*.pbxuser
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+*.swp
+*~
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Project-specific exclusions
+Calculator
+Calculator.exe
+Calculator*.exe
