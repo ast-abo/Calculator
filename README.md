@@ -7,7 +7,7 @@ A simple calculator to help me learn c++
 MSVC Compiler
 
 ## MacOS/Linux
-G++ Compiler
+G++ Compiler or Clang++ Compiler
 
 # Build Instructions
 Open terminal and paste these commands
