@@ -10,7 +10,10 @@ MSVC Compiler
 G++ Compiler or Clang++ Compiler
 
 # Build Instructions
+
 ## MacOs/Linux
+
+```cmd
 git clone https://github.com/ast-abo/Calculator.git
 
 cd Calculator
@@ -18,11 +21,13 @@ cd Calculator
 g++ Calculator.cpp Classes/Operation.cpp -o Calculator
 
 ./Calculator
+```
 
 ## Windows
 
-In Developer Command Prompt for VS 2022
+Run these command in Developer Command Prompt for VS 2022.
 
+```cmd
 cd C:\Users\%USERNAME%
 
 git clone https://github.com/ast-abo/Calculator.git
@@ -32,6 +37,7 @@ cd Calculator
 cl Calculator.cpp Classes\Operation.cpp /IClassHeaders
 
 Calculator.exe
+```
 
 # Misc
 
