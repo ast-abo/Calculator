@@ -1,15 +1,15 @@
-## About
+# About
 A simple calculator to help me learn c++
 
-## Prerequistes
+# Prerequistes
 
-# Windows
+## Windows
 MSVC Compiler
 
-# MacOS/Linux
+## MacOS/Linux
 G++ Compiler
 
-## Build Instructions
+# Build Instructions
 Open terminal and paste these commands
 
 ## MacOs/Linux
@@ -21,7 +21,7 @@ g++ Calculator.cpp Classes/Operation.cpp -o Calculator
 
 ./Calculator
 
-# Windows
+## Windows
 git clone https://github.com/ast-abo/Calculator.git
 
 cd Calculator
@@ -30,7 +30,7 @@ cl Calculator.cpp Classes\Operation.cpp
 
 Calculator.exe
 
-## Misc
+# Misc
 
 Enter exit to quit the program.
 
