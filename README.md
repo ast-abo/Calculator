@@ -20,3 +20,7 @@ git clone --single-branch --branch MultiplicationParsing https://github.com/ast-
 cd Calculator
 
 Calculator.exe
+# Misc
+
+Enter exit to quit the program.
+
