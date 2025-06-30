@@ -2,15 +2,23 @@
 A simple calculator to help me learn c++
 
 # Prerequistes
-g++ Compiler
+g++ Compiler or clang++ Compiler
 
 # Build Instructions
 
-## Windows/MacOs/Linux
+## g++
 
 ```cmd
 git clone https://github.com/ast-abo/Calculator
 cd Calculator
 make
+./Calculator
+```
+
+## Clang++
+```cmd
+git clone https://github.com/ast-abo/Calculator
+cd Calculator
+make CXX=clang++
 ./Calculator
 ```
