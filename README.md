@@ -1,7 +1,7 @@
 # About
 A simple calculator to help me learn c++
 
-# Prerequistes
+# Prerequisites
 g++ Compiler or clang++ Compiler
 
 # Build Instructions
