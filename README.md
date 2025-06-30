@@ -4,6 +4,10 @@ A simple calculator to help me learn c++
 # Prerequisites
 g++ Compiler or clang++ Compiler
 
+## Tested Terminals
+XCode
+MingW64
+
 # Build Instructions
 
 ## g++
